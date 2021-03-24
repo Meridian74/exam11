@@ -22,7 +22,7 @@ public class RadioCharts {
                     + "GROUP BY song\n"
                     + "ORDER BY SUM(times_aired) DESC, artist ASC LIMIT 1";
 
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 result = rs.getString("song");
@@ -42,7 +42,7 @@ public class RadioCharts {
                     + "GROUP BY artist\n"
                     + "ORDER BY song DESC LIMIT 1";
 
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 result = rs.getString("artist");
