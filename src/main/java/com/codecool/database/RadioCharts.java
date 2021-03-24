@@ -17,10 +17,10 @@ public class RadioCharts {
     public String getMostPlayedSong() {
         String result = "";
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String sql = "SELECT song, SUM(times_aired) AS aired\n"
+            String sql = "SELECT song\n"
                     + "FROM music_broadcast\n"
                     + "GROUP BY song\n"
-                    + "ORDER BY aired DESC LIMIT 2";
+                    + "ORDER BY SUM(times_aired) DESC, artist ASC LIMIT 1";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = statement.executeQuery();
