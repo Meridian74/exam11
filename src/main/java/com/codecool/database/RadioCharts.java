@@ -37,7 +37,7 @@ public class RadioCharts {
     public String getMostActiveArtist() {
         String result = "";
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String sql = "SELECT artist, COUNT(song) AS countered\n"
+            String sql = "SELECT artist, COUNT(DISTINCT song) AS countered\n"
                     + "FROM music_broadcast\n"
                     + "GROUP BY artist\n"
                     + "ORDER BY countered DESC LIMIT 1";
